@@ -137,7 +137,7 @@ def main():
     categories = categorize_all_employees(averages)
     print("\nEmployee Categories:")
     for employee,category in categories.items():
-        print(f"- {employee}: {category}")
+        print(f"- {employee} : {category}")
 
 
 if __name__ == "__main__":
