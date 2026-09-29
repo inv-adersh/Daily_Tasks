@@ -7,8 +7,10 @@ def send_bank_webhook(transaction_id):
         "transaction_id": transaction_id,
     }
 
-    requests.post(
-        url,
-        json=payload,
-        timeout=5
-    )
+    try:
+        requests.post(
+            url,
+            json=payload,
+            timeout=5)
+    except requests.RequestException as e:
+        print(f"Webhook failed: {e}")  
