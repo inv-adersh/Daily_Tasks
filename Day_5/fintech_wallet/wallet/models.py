@@ -23,22 +23,16 @@ class Wallet(models.Model):
         default=False
     )
 
-class TransactionLogQuerySet(models.QuerySet):
-    pass
-
-
 class TransactionLogManager(models.Manager):
-    def get_queryset(self):
-        return TransactionLogQuerySet(
-            self.model,
-            using=self._db
-        ).filter(is_deleted=False)
 
-    def all_with_deleted(self):
-        return TransactionLogQuerySet(
-            self.model,
-            using=self._db
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            is_deleted=False
         )
+
+    @property
+    def with_deleted(self):
+        return super().get_queryset()
 
 
 class TransactionLog(models.Model):

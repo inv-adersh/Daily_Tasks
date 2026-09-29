@@ -12,6 +12,7 @@ def generate_receipt_pdf(transaction_log):
     pdf.drawString(100,650,"Amount: " + str(transaction_log.amount))
     pdf.drawString(100,600,"Reference Code: " + str(transaction_log.reference_code))
     pdf.drawString(100,550,"Created At: " + str(transaction_log.created_at))
+    
     pdf.save()
 
     return filename
