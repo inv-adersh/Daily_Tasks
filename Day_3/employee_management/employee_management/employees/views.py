@@ -16,11 +16,6 @@ class EmployeeList(View):
 
         employees= Employee.objects.all()
         
-        # for render template
-        # return render(request,
-        #                 "employees/employee_list.html", 
-        #                 {"employees": employees})  
-
 
         data =[]
 
@@ -29,6 +24,7 @@ class EmployeeList(View):
                 "id": employee.id,
                 "name": employee.name,
                 "email": employee.email,
+                "age":employee.age,
                 "salary": employee.salary,
                 "joining_date": employee.joining_date,
                 "phone_no": employee.phone_no,

@@ -5,8 +5,8 @@ from rest_framework import serializers
 
 class DeductSerializer(serializers.Serializer):
 
-    amount= serializers.DecimalField(
+    amount = serializers.DecimalField(
         max_digits=12,
         decimal_places=2,
         min_value=Decimal("0.01")
-    )   
+    )

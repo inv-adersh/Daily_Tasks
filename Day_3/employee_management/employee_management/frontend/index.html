@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Employee Management Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>Employee Management Dashboard</h1>
+
+    <p id="loading">Loading employees...</p>
+    <p id="error"></p>
+
+
+    <input
+        type="text"
+        id="search-input"
+        placeholder="Search employee by name"
+    >
+
+    <input
+        type="number"
+        id="salary-input"
+        placeholder="Minimum salary"
+    >
+
+    <select id="sort-select">
+        <option value="">Sort employees</option>
+        <option value="name">Name</option>
+        <option value="salary-low">Salary: Low to High</option>
+        <option value="salary-high">Salary: High to Low</option>
+    </select>
+
+    <div id="statistics">
+    <p>Total Employees: <span id="total-employees">0</span></p>
+    <p>Total Salary: <span id="total-salary">0</span></p>
+    <p>Average Salary: <span id="average-salary">0</span></p>
+    <p>Highest Paid: <span id="highest-paid">-</span></p>
+    </div>  
+
+
+    <input
+    type="text"
+    id="username-input"
+    placeholder="Enter your username"
+>
+
+<button id="save-username">
+    Save Username
+</button>
+
+<p id="welcome-message"></p>
+
+
+    <div id="employee-list"></div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>

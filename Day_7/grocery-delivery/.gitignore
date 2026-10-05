@@ -1,0 +1,133 @@
+# ──────────────────────────────────────────────
+# Python
+# ──────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+.Python
+
+# ──────────────────────────────────────────────
+# Virtual Environments
+# ──────────────────────────────────────────────
+venv/
+env/
+.venv/
+.env/
+ENV/
+env.bak/
+venv.bak/
+
+# ──────────────────────────────────────────────
+# Django
+# ──────────────────────────────────────────────
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+static_root/
+
+# ──────────────────────────────────────────────
+# Environment / Secrets
+# ──────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.secret
+secrets.json
+
+# ──────────────────────────────────────────────
+# Celery
+# ──────────────────────────────────────────────
+celerybeat-schedule
+celerybeat-schedule.db
+celerybeat.pid
+
+# ──────────────────────────────────────────────
+# Redis
+# ──────────────────────────────────────────────
+dump.rdb
+*.rdb
+
+# ──────────────────────────────────────────────
+# Testing & Coverage
+# ──────────────────────────────────────────────
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.hypothesis/
+
+# ──────────────────────────────────────────────
+# Type Checkers
+# ──────────────────────────────────────────────
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pytype/
+
+# ──────────────────────────────────────────────
+# IDEs & Editors
+# ──────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+*.sublime-project
+*.sublime-workspace
+
+# ──────────────────────────────────────────────
+# OS
+# ──────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ──────────────────────────────────────────────
+# Docker
+# ──────────────────────────────────────────────
+.dockerignore
+docker-compose.override.yml
+
+# ──────────────────────────────────────────────
+# Migrations (uncomment to exclude auto-generated)
+# ──────────────────────────────────────────────
+# */migrations/0*.py
+
+# ──────────────────────────────────────────────
+# Misc
+# ──────────────────────────────────────────────
+*.bak
+*.tmp
+*.orig
+nohup.out

@@ -3,5 +3,5 @@ from .views import WalletDeductView
 
 
 urlpatterns=[
-    path("wallet/<uuid:wallet_id>/deduct/",WalletDeductView.as_view()),
+    path("wallet/<str:wallet_id>/deduct/",WalletDeductView.as_view()),
 ]

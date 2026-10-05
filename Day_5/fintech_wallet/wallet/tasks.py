@@ -8,7 +8,7 @@ executor = ThreadPoolExecutor(max_workers=3)
 
 def generate_receipt_task(transaction_id):
 
-    transaction = TransactionLog.objects.get(id=transaction_id)
+    transaction = TransactionLog.objects.filter().last()
 
     generate_receipt_pdf(transaction)
 

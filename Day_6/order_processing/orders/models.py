@@ -32,5 +32,5 @@ class OutboxEvent(models.Model):
     aggregate_id = models.UUIDField()
     event_type = models.CharField(max_length=100)
     payload = models.JSONField()
-    published_at = models.DateTimeField(null=True)
+    published_at = models.DateTimeField(null=True,db_index=True)
     created_at = models.DateTimeField(auto_now_add=True)
