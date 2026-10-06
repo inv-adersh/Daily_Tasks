@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+
+#loading {
+    text-align: center;
+}
+
+#error {
+    color: red;
+    text-align: center;
+}
+
+#search-input,
+#salary-input,
+#sort-select {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+#statistics {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+#employee-list {
+    margin-top: 20px;
+}
+
+#employee-list > div {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+#employee-list h2 {
+    margin-top: 0;
+}
+
+button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+#username-input {
+    padding: 10px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#save-username {
+    margin-left: 5px;
+}
+
+#welcome-message {
+    font-weight: bold;
+}

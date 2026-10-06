@@ -208,8 +208,6 @@ function setSalaryCookie(salary) {
 }
 
 
-
-
 function getSalaryCookie() {
 
     const cookies = document.cookie.split("; ");
@@ -264,7 +262,7 @@ function checkEmployeeData() {
 
     });
 }
-
+n
 
 checkEmployeeData()
     .then((message) => {
