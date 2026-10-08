@@ -54,11 +54,19 @@ function UsersPage() {
     return (
         <div>
 
-            <h1 className="text-5xl font-bold text-black mb-6 mt-4 text-center" >Users</h1>
+
 
             {loading ? <Loader />
-             : error ? <ErrorMessage message={error} onRetry={fetchUsers}/>
-             : <UserList users={users} onSelect={handleUserSelect}/>}
+                : error ? <ErrorMessage message={error} onRetry={fetchUsers} />
+                    : (
+                        <>
+                            <h1 className="text-5xl font-bold text-black mb-6 mt-4 text-center" >Users</h1>
+                            <UserList users={users} onSelect={handleUserSelect} />
+
+                        </>
+                    )}
+
+
 
         </div>
     );

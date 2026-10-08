@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -51,15 +52,15 @@ function PostsPage() {
     return (
         <div>
 
-            <button className="bg-gray-200 p-1 rounded-xl border-3 border-black shadow-lg"onClick={() => navigate("/")}>
+            <button className="bg-gray-200 p-1 rounded-xl border-3 border-black shadow-lg mt-6 ml-4 pl-2 pr-2" onClick={() => navigate("/")}>
                 ← Back to Users
             </button>
 
             <h1 className="text-center text-4xl font-bold mt-4 mb-6">Posts</h1>
 
             {loading ? <Loader />
-             : error ? <ErrorMessage message={error} onRetry={fetchPosts}/>
-             : <PostList posts={posts} />
+                : error ? <ErrorMessage message={error} onRetry={fetchPosts} />
+                    : <PostList posts={posts} />
             }
 
         </div>
