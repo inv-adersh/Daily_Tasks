@@ -42,7 +42,7 @@ class BookListView(APIView):
         serializer = BookSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        book = serializer.save()
+        serializer.save()
 
         return Response(
             serializer.data,
@@ -84,10 +84,10 @@ class BookDetailView(APIView):
         serializer = BookSerializer(book, data=request.data)
 
         serializer.is_valid(raise_exception=True)
-        book = serializer.save()
+        serializer.save()
 
         return Response(
-            BookSerializer(book).data,
+            serializer.data,
             status=status.HTTP_200_OK
         )
 
@@ -112,10 +112,10 @@ class BookDetailView(APIView):
             raise_exception=True
         )
 
-        book = serializer.save()
+        serializer.save()
 
         return Response(
-            BookSerializer(book).data,
+            serializer.data,
             status=status.HTTP_200_OK
         )
 
@@ -166,10 +166,10 @@ class CategoryListView(APIView):
             raise_exception=True
         )
 
-        category = serializer.save()
+        serializer.save()
 
         return Response(
-            CategorySerializer(category).data,
+            serializer.data,
             status=status.HTTP_201_CREATED
         )
 
@@ -214,10 +214,10 @@ class CategoryDetailView(APIView):
             raise_exception=True
         )
 
-        category = serializer.save()
+        serializer.save()
 
         return Response(
-            CategorySerializer(category).data,
+            serializer.data,
             status=status.HTTP_200_OK
         )
 
@@ -242,10 +242,10 @@ class CategoryDetailView(APIView):
             raise_exception=True
         )
 
-        category = serializer.save()
+        serializer.save()
 
         return Response(
-            CategorySerializer(category).data,
+            serializer.data,
             status=status.HTTP_200_OK
         )
 

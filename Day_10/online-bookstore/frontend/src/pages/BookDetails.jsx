@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { addToCart, getBook } from "../services/api";
+import Loader from "../components/Loader";
+import ErrorMessage from "../components/ErrorMessage";
 
 function BookDetails() {
 
@@ -33,65 +35,111 @@ function BookDetails() {
   }, [id]);
 
   async function handleAddToCart() {
-  try {
-    setMessage("");
+    if (quantity < 1) {
+      setMessage("Quantity must be at least 1.");
+      return;
+    }
 
-    await addToCart(id, quantity);
-    setMessage("Book added to cart.");
+    if (quantity > book.stock) {
+      setMessage("Quantity cannot exceed available stock.");
+      return;
+    }
 
-  } catch (error) {
-    setMessage("Failed to add book to cart.");
+
+    try {
+      setMessage("");
+
+      await addToCart(id, quantity);
+      setMessage("Book added to cart.");
+    } catch (error) {
+      setMessage("Failed to add book to cart.");
+    }
   }
-}
 
   if (loading) {
-    return <p>Loading book...</p>;
+    return <Loader message="Loading book..." />;
   }
 
   if (error) {
-    return (
-      <div>
-        <p>{error}</p>
-
-        <button onClick={loadBook}>
-          Retry
-        </button>
-      </div>
-    );
+    return <ErrorMessage message={error} onRetry={loadBook} />;
   }
 
   return (
+    <div className="min-h-screen bg-gray-100 px-4 py-10">
+      <div className="mx-auto max-w-3xl rounded-lg bg-white p-6 shadow-md sm:p-8">
 
-    
-    <div>
-      <h1>{book.title}</h1>
+        <h1 className="mb-6 text-3xl font-bold text-gray-800">
+          {book.title}
+        </h1>
 
-      <p>Author: {book.author}</p>
+        <div className="space-y-4 text-gray-600">
 
-      <p>Description: {book.description}</p>
+          <p>
+            <span className="font-semibold text-gray-800">Author:</span>{" "}
+            {book.author}
+          </p>
 
-      <p>Price: ₹{book.price}</p>
+          <p>
+            <span className="font-semibold text-gray-800">
+              Description:
+            </span>{" "}
+            {book.description}
+          </p>
 
-      <p>Stock: {book.stock}</p>
+          <p className="text-xl font-bold text-blue-700">
+            Price: ₹{book.price}
+          </p>
 
-      <p>ISBN: {book.isbn}</p>
+          <p>
+            <span className="font-semibold text-gray-800">Stock:</span>{" "}
+            {book.stock}
+          </p>
 
-      <p>Quantity:</p>
+          <p>
+            <span className="font-semibold text-gray-800">ISBN:</span>{" "}
+            {book.isbn}
+          </p>
 
-        <input
-        type="number"
-        min="1"
-        value={quantity}
-        onChange={(event) =>
-        setQuantity(Number(event.target.value))
-        }
-        />
+        </div>
 
-        <button onClick={handleAddToCart}>
+        <div className="mt-6 border-t border-gray-200 pt-6">
+
+          <label
+            htmlFor="quantity"
+            className="mb-2 block font-medium text-gray-700"
+          >
+            Quantity
+          </label>
+
+          <input
+            id="quantity"
+            type="number"
+            min="1"
+            max={book.stock}
+            value={quantity}
+            onChange={(event) => {
+              const val = event.target.value;
+              setQuantity(val === "" ? "" : Number(val));
+            }}
+            className="mb-4 w-full rounded-md border border-gray-300 px-3 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+          />
+
+          <button
+            type="button"
+            onClick={handleAddToCart}
+            className="w-full rounded-md bg-blue-600 px-4 py-3 font-medium text-white transition-colors hover:bg-blue-700"
+          >
             Add to Cart
-        </button>
+          </button>
 
-        {message && <p>{message}</p>}
+          {message && (
+            <p className="mt-4 rounded-md bg-gray-100 p-3 text-sm text-gray-700">
+              {message}
+            </p>
+          )}
+
+        </div>
+      </div>
     </div>
   );
 }

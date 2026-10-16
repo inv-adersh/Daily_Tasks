@@ -56,8 +56,8 @@ class CartView(APIView):
                     status=status.HTTP_400_BAD_REQUEST
                 )
 
-        cart_item.quantity = new_quantity
-        cart_item.save()
+            cart_item.quantity = new_quantity
+            cart_item.save()
     
         return Response(
             serializer.data,

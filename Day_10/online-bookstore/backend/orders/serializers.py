@@ -4,12 +4,14 @@ from .models import Order, OrderItem
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
-
+    book_title = serializers.CharField(source="book.title",read_only=True)
+    
     class Meta:
         model = OrderItem
         fields = [
             "id",
             "book",
+            "book_title",
             "quantity",
             "price",
         ]
