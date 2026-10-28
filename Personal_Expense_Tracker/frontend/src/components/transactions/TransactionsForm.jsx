@@ -10,7 +10,7 @@ function TransactionForm({ onClose, onSubmit, saving, transaction = null, }) {
     amount: transaction?.amount ?? "",
     date: transaction?.date ?? new Date().toISOString().slice(0, 10),
     description: transaction?.description ?? "",
-});
+  });
 
   const [error, setError] = useState("");
 
@@ -60,7 +60,7 @@ function TransactionForm({ onClose, onSubmit, saving, transaction = null, }) {
         <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5">
           <div>
             <h2 className="text-xl font-semibold text-slate-900">
-                {transaction ? "Edit Transaction" : "Add Transaction"}
+              {transaction ? "Edit Transaction" : "Add Transaction"}
             </h2>
 
             <p className="mt-1 text-sm text-slate-500">
@@ -72,7 +72,6 @@ function TransactionForm({ onClose, onSubmit, saving, transaction = null, }) {
             type="button"
             onClick={onClose}
             disabled={saving}
-            aria-label="Close form"
             className="rounded-lg p-2 text-slate-500 hover:bg-slate-100"
           >
             <X size={20} />
@@ -90,10 +89,7 @@ function TransactionForm({ onClose, onSubmit, saving, transaction = null, }) {
           )}
 
           <div>
-            <label
-              htmlFor="title"
-              className="mb-2 block text-sm font-medium text-slate-700"
-            >
+            <label className="mb-2 block text-sm font-medium text-slate-700">
               Transaction title
             </label>
 
@@ -110,10 +106,7 @@ function TransactionForm({ onClose, onSubmit, saving, transaction = null, }) {
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label
-                htmlFor="type"
-                className="mb-2 block text-sm font-medium text-slate-700"
-              >
+              <label className="mb-2 block text-sm font-medium text-slate-700">
                 Type
               </label>
 
@@ -130,10 +123,7 @@ function TransactionForm({ onClose, onSubmit, saving, transaction = null, }) {
             </div>
 
             <div>
-              <label
-                htmlFor="category"
-                className="mb-2 block text-sm font-medium text-slate-700"
-              >
+              <label className="mb-2 block text-sm font-medium text-slate-700">
                 Category
               </label>
 
@@ -161,10 +151,7 @@ function TransactionForm({ onClose, onSubmit, saving, transaction = null, }) {
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label
-                htmlFor="amount"
-                className="mb-2 block text-sm font-medium text-slate-700"
-              >
+              <label className="mb-2 block text-sm font-medium text-slate-700">
                 Amount (₹)
               </label>
 
@@ -178,15 +165,12 @@ function TransactionForm({ onClose, onSubmit, saving, transaction = null, }) {
                 onChange={handleChange}
                 placeholder="0.00"
                 required
-                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-indigo-500"
+                className=" no-spinner w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-indigo-500"
               />
             </div>
 
             <div>
-              <label
-                htmlFor="date"
-                className="mb-2 block text-sm font-medium text-slate-700"
-              >
+              <label className="mb-2 block text-sm font-medium text-slate-700">
                 Date
               </label>
 
@@ -203,10 +187,7 @@ function TransactionForm({ onClose, onSubmit, saving, transaction = null, }) {
           </div>
 
           <div>
-            <label
-              htmlFor="description"
-              className="mb-2 block text-sm font-medium text-slate-700"
-            >
+            <label className="mb-2 block text-sm font-medium text-slate-700">
               Description (optional)
             </label>
 
@@ -239,9 +220,9 @@ function TransactionForm({ onClose, onSubmit, saving, transaction = null, }) {
               {saving
                 ? "Saving..."
                 : transaction
-                ? "Update Transaction"
-                : "Save Transaction"}
-                
+                  ? "Update Transaction"
+                  : "Save Transaction"}
+
             </button>
           </div>
         </form>

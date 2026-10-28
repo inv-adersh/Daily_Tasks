@@ -8,7 +8,6 @@ export const CATEGORIES = [
   "TRAVEL",
   "SHOPPING",
   "ENTERTAINMENT",
-  "SALARY",
   "OTHERS",
 ];
 
@@ -132,10 +131,7 @@ function BudgetForm({
 
             {/* Category Dropdown */}
             <div>
-              <label
-                htmlFor="category"
-                className="mb-2 block text-sm font-medium text-slate-700"
-              >
+              <label className="mb-2 block text-sm font-medium text-slate-700">
                 Category
               </label>
               <select
@@ -158,10 +154,7 @@ function BudgetForm({
 
             {/* Limit Amount */}
             <div>
-              <label
-                htmlFor="limit"
-                className="mb-2 block text-sm font-medium text-slate-700"
-              >
+              <label className="mb-2 block text-sm font-medium text-slate-700">
                 Budget Limit (₹)
               </label>
               <input
@@ -174,7 +167,7 @@ function BudgetForm({
                 value={formData.limit}
                 onChange={handleChange}
                 required
-                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-800 outline-none focus:border-indigo-500"
+                className="no-spinner w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-800 outline-none focus:border-indigo-500"
               />
             </div>
           </div>

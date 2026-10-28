@@ -28,19 +28,25 @@ function TransactionsPage() {
     end_date: "",
   });
 
+  const [selectedDate, setSelectedDate] = useState("");
+
   const handlePrevMonth = () => {
     setSelectedMonth((curr) => changeMonth(curr, -1));
+    setSelectedDate("");
   };
 
   const handleNextMonth = () => {
     setSelectedMonth((curr) => changeMonth(curr, 1));
+    setSelectedDate("");
   };
+
 
   useEffect(() => {
     const [year, month] = selectedMonth.split("-").map(Number);
     const lastDay = new Date(year, month, 0).getDate();
     const monthStartDate = `${selectedMonth}-01`;
     const monthEndDate = `${selectedMonth}-${String(lastDay).padStart(2, "0")}`;
+
 
     dispatch(
       fetchTransactions({
@@ -50,6 +56,8 @@ function TransactionsPage() {
       })
     );
   }, [dispatch, filters, selectedMonth]);
+
+
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
@@ -63,11 +71,16 @@ function TransactionsPage() {
       start_date: "",
       end_date: "",
     });
+    setSelectedDate("");
   };
 
   const isFiltered = Boolean(
     filters.transaction_type || filters.category || filters.start_date || filters.end_date
   );
+
+  const displayedTransactions = selectedDate
+    ? items.filter((item) => item.date === selectedDate)
+    : items;
 
   // Check if an expense causes a budget warning or exceeds budget
   const checkBudgetWarning = async (category, date) => {
@@ -191,7 +204,7 @@ function TransactionsPage() {
       await dispatch(deleteTransaction(transaction.id)).unwrap();
       toast.success("Transaction deleted successfully!");
 
-      
+
     } catch (error) {
       toast.error(
         typeof error === "string"
@@ -358,6 +371,35 @@ function TransactionsPage() {
 
       {/* Transaction list */}
       <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+        {/* Date Filter Header */}
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+          <h3 className="text-sm font-semibold text-slate-800">
+            Transactions
+          </h3>
+
+          <div className="flex items-center gap-2">
+            <label htmlFor="select_date" className="text-xs font-medium text-slate-600">
+              Select Date:
+            </label>
+            <input
+              id="select_date"
+              type="date"
+              value={selectedDate}
+              onChange={(e) => setSelectedDate(e.target.value)}
+              className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs text-slate-800 outline-none focus:border-indigo-500 focus:bg-white"
+            />
+            {selectedDate && (
+              <button
+                type="button"
+                onClick={() => setSelectedDate("")}
+                className="text-xs font-medium text- hover:underline cursor-pointer"
+              >
+                Clear
+              </button>
+            )}
+          </div>
+        </div>
+
         {loading && (
           <p className="py-8 text-center text-sm text-slate-500">
             Loading transactions...
@@ -380,21 +422,33 @@ function TransactionsPage() {
           </div>
         )}
 
-        {!loading && !error && items.length === 0 && (
+        {!loading && !error && displayedTransactions.length === 0 && (
           <div className="py-12 text-center">
             <p className="font-medium text-slate-800">
-              {isFiltered
-                ? "No transactions found matching your filters"
-                : "No transactions yet"}
+              {selectedDate
+                ? `No transactions on ${selectedDate}`
+                : isFiltered
+                  ? "No transactions found matching your filters"
+                  : "No transactions yet"}
             </p>
 
             <p className="mt-1 text-sm text-slate-500">
-              {isFiltered
-                ? "Try adjusting or clearing your filters to see more results."
-                : "Add your first transaction to get started."}
+              {selectedDate
+                ? "Try switching to another date or click Show All Days."
+                : isFiltered
+                  ? "Try adjusting or clearing your filters to see more results."
+                  : "Add your first transaction to get started."}
             </p>
 
-            {isFiltered && (
+            {selectedDate ? (
+              <button
+                type="button"
+                onClick={() => setSelectedDate("")}
+                className="mt-4 inline-flex items-center gap-1.5 rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 cursor-pointer"
+              >
+                Show All Days
+              </button>
+            ) : isFiltered ? (
               <button
                 type="button"
                 onClick={handleResetFilters}
@@ -403,14 +457,14 @@ function TransactionsPage() {
                 <RotateCcw size={14} />
                 Clear Filters
               </button>
-            )}
+            ) : null}
           </div>
         )}
 
-        {!loading && items.length > 0 && (
+        {!loading && displayedTransactions.length > 0 && (
           <div className="divide-y divide-slate-100">
 
-            {items.map((transaction) => {
+            {displayedTransactions.map((transaction) => {
               const isIncome = transaction.transaction_type === "INCOME";
 
               return (
@@ -421,8 +475,8 @@ function TransactionsPage() {
                   <div className="flex min-w-0 items-center gap-3">
                     <div
                       className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${isIncome
-                          ? "bg-green-50 text-green-600"
-                          : "bg-red-50 text-red-600"
+                        ? "bg-green-50 text-green-600"
+                        : "bg-red-50 text-red-600"
                         }`}
                     >
                       {isIncome ? (

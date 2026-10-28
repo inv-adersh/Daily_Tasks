@@ -39,7 +39,7 @@ function NotFoundPage() {
 
         {/* Footer message */}
         <p className="mt-8 text-xs text-slate-400">
-          Finance Flow · Personal Finance Tracker
+        Personal Finance Tracker
         </p>
 
       </div>

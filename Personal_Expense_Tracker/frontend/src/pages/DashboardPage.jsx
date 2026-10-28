@@ -93,9 +93,7 @@ function DashboardPage() {
       if (!totalsByMonth[month]) {
         totalsByMonth[month] = { Income: 0, Expenses: 0 };
       }
-
       const amount = Number(transaction.amount);
-
       // Add to income or expense based on transaction type
       if (transaction.transaction_type === "INCOME") {
         totalsByMonth[month].Income += amount;

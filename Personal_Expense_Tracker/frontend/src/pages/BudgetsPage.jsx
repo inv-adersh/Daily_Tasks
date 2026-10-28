@@ -80,6 +80,7 @@ function BudgetsPage() {
       await dispatch(deleteBudget(budget.id)).unwrap();
       toast.success("Budget deleted successfully!");
       dispatch(fetchBudgets(selectedMonth));
+      
     } catch (err) {
       toast.error(
         typeof err === "string" ? err : "Failed to delete budget."
@@ -95,7 +96,7 @@ function BudgetsPage() {
   };
   const handleNextMonth = () => {
     setSelectedMonth((curr) => changeMonth(curr, 1));
-  };
+  };  
 
 
   const summary = useMemo(() => {
