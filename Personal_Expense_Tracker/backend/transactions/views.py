@@ -161,9 +161,11 @@ class MonthlySummaryAPIView(APIView):
 
 
 
-@extend_schema(
-    parameters=[BudgetFilterSerializer],
-    description="Retrieve budgets, optionally filtered by month.",
+@extend_schema_view(
+    list=extend_schema(
+        parameters=[BudgetFilterSerializer],
+        description="Retrieve budgets, optionally filtered by month.",
+    )
 )
 
 class BudgetViewSet(viewsets.ModelViewSet):
